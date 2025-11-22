@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   # https://gateway-api.sigs.k8s.io/guides/#install-standard-channel
   # https://github.com/nginx/nginx-gateway-fabric?tab=readme-ov-file#technical-specifications
-  - https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.3.0/standard-install.yaml
+  - https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.2.1/standard-install.yaml

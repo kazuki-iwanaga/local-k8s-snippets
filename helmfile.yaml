@@ -1,3 +1,14 @@
+# https://helmfile.readthedocs.io/
+
 releases:
   - name: gateway-api
     chart: ./kustomize/gateway-api
+
+  - name: ngf
+    chart: oci://ghcr.io/nginx/charts/nginx-gateway-fabric
+    version: 1.6.2
+    namespace: ngf
+    createNamespace: true
+    values:
+      - values/ngf/values.yaml
+    disableValidationOnInstall: true
