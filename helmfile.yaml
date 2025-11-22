@@ -17,5 +17,8 @@ releases:
     # Not essential, just my preference.
     suppressDiff: true
 
+  - name: gateway
+    chart: ./kustomize/gateway
+
   - name: ngf-sample-app
     chart: ./kustomize/ngf-sample-app
