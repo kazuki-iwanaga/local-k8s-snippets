@@ -1,14 +1,19 @@
-# https://helmfile.readthedocs.io/
+kubeVersion: 1.32.2
 
 releases:
   - name: gateway-api
     chart: ./kustomize/gateway-api
 
   - name: ngf
+    # https://docs.nginx.com/nginx-gateway-fabric/get-started/#install-the-helm-chart
     chart: oci://ghcr.io/nginx/charts/nginx-gateway-fabric
     version: 1.6.2
     namespace: ngf
     createNamespace: true
     values:
       - values/ngf/values.yaml
+    # Required when CRDs are included in the chart.
+    # https://helmfile.readthedocs.io/en/latest/#configuration
     disableValidationOnInstall: true
+    # Not essential, just my preference.
+    suppressDiff: true

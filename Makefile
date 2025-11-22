@@ -6,10 +6,6 @@ up:
 down:
 	ctlptl delete -f ctlptl.yaml
 
-.PHONY: apply
-apply:
+.PHONY: run
+run:
 	helmfile apply
-
-.PHONY: delete
-delete:
-	helmfile delete
