@@ -19,4 +19,3 @@ releases:
 
   - name: ngf-sample-app
     chart: ./kustomize/ngf-sample-app
-    namespace: ngf-sample-app
