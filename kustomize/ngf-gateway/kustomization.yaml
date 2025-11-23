@@ -6,4 +6,5 @@ namespace: ngf-gateway
 resources:
   - namespace.yaml
   - gateway.yaml
-
+  - httproute.yaml
+  - sample-app.yaml
