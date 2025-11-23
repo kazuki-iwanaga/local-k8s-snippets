@@ -3,11 +3,14 @@ kubeVersion: 1.32.2
 releases:
   - name: gateway-api
     chart: ./kustomize/gateway-api
+    namespace: ngf
 
-  - name: ngf
+  - needs:
+      - ngf/gateway-api
+    name: ngf
     # https://docs.nginx.com/nginx-gateway-fabric/get-started/#install-the-helm-chart
     chart: oci://ghcr.io/nginx/charts/nginx-gateway-fabric
-    version: 1.6.2
+    version: 2.2.1
     namespace: ngf
     values:
       - values/ngf/values.yaml
@@ -17,8 +20,8 @@ releases:
     # Not essential, just my preference.
     suppressDiff: true
 
-  - name: gateway
+  - needs:
+      - ngf/ngf
+    name: ngf-gateway
     chart: ./kustomize/ngf-gateway
-
-  - name: ngf-sample-app
-    chart: ./kustomize/ngf-sample-app
+    namespace: ngf-gateway
