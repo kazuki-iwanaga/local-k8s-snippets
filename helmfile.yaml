@@ -22,8 +22,6 @@ releases:
     # Required when CRDs are included in the chart.
     # https://helmfile.readthedocs.io/en/latest/#configuration
     disableValidationOnInstall: true
-    # Not essential, just my preference.
-    suppressDiff: true
 
   - needs:
       - ngf/ngf
@@ -44,4 +42,10 @@ releases:
     chart: istio/istiod
     version: 1.28.0
     namespace: istio-system
+    wait: true
+
+  - needs:
+      - istio-system/istiod
+    name: istio-sample-app
+    chart: ./kustomize/istio-sample-app
     wait: true
