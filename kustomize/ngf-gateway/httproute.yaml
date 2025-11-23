@@ -4,20 +4,20 @@ metadata:
   name: sample-app
 spec:
   parentRefs:
-  - name: gateway
-    sectionName: http
+    - name: gateway
+      sectionName: http
   rules:
-  - matches:
-    - path:
-        type: PathPrefix
-        value: /coffee
-    backendRefs:
-    - name: coffee
-      port: 80
-  - matches:
-    - path:
-        type: PathPrefix
-        value: /tea
-    backendRefs:
-    - name: tea
-      port: 80
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /coffee
+      backendRefs:
+        - name: coffee
+          port: 80
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /tea
+      backendRefs:
+        - name: tea
+          port: 80
