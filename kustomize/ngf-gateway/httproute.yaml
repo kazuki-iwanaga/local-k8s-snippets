@@ -14,3 +14,10 @@ spec:
     backendRefs:
     - name: coffee
       port: 80
+  - matches:
+    - path:
+        type: PathPrefix
+        value: /tea
+    backendRefs:
+    - name: tea
+      port: 80
