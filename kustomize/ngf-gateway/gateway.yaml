@@ -8,3 +8,9 @@ spec:
     - name: http
       port: 80
       protocol: HTTP
+      # https://docs.cloud.google.com/kubernetes-engine/docs/how-to/deploying-gateways#redirect_http_traffic_from_an_infrastructure_namespace
+      allowedRoutes:
+        kinds:
+          - kind: HTTPRoute
+        namespaces:
+          from: All
