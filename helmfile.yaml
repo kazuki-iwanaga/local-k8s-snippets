@@ -1,5 +1,10 @@
 kubeVersion: 1.32.2
 
+repositories:
+  # https://istio.io/latest/docs/setup/install/helm/#prerequisites
+  - name: istio
+    url: https://istio-release.storage.googleapis.com/charts
+
 releases:
   - name: gateway-api
     chart: ./kustomize/gateway-api
@@ -25,3 +30,18 @@ releases:
     name: ngf-gateway
     chart: ./kustomize/ngf-gateway
     namespace: ngf-gateway
+
+  - needs:
+      - ngf-gateway/ngf-gateway
+    name: istio-base
+    chart: istio/base
+    version: 1.28.0
+    namespace: istio-system
+
+  - needs:
+      - istio-system/istio-base
+    name: istiod
+    chart: istio/istiod
+    version: 1.28.0
+    namespace: istio-system
+    wait: true
