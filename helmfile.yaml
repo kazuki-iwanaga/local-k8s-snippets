@@ -10,6 +10,7 @@ releases:
   # https://gateway-api.sigs.k8s.io/guides/#install-standard-channel
   - name: gateway-api
     chart: ./kustomize/gateway-api
+    namespace: default
 
   # Install Istio (sidecar mode)
   # https://istio.io/latest/docs/setup/install/helm/
@@ -22,10 +23,15 @@ releases:
     version: 1.28.0
     namespace: istio-system
     wait: true
-
   # Install Istio Ingress Gateway
   # NOTE: Use kustomize to install istio-ingressgateway as NodePort and specify its port.
   # https://istio.io/latest/docs/setup/additional-setup/gateway/
   - name: istio-ingressgateway
     chart: ./kustomize/istio-ingressgateway
     namespace: istio-system
+    wait: true
+    # NOTE: Required Gateway API CRDs since this manifest includes Gateway resource.
+    needs:
+      - default/gateway-api
+  # Install Istio integrations
+  # https://istio.io/latest/docs/ops/integrations/
