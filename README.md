@@ -16,3 +16,6 @@ make run
 # Links
 - http://localhost:30080/coffee
 - http://localhost:30080/tea
+- http://localhost:30080/productpage
+- http://localhost:30080/kiali
+- http://localhost:30080/jaeger

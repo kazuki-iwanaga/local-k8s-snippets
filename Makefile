@@ -8,4 +8,13 @@ down:
 
 .PHONY: run
 run:
-	helmfile apply
+	helmfile apply --suppress-diff
+
+.PHONY: coffee-and-tea
+coffee-and-tea:
+	for i in $$(seq 1 100); do curl -s -o /dev/null "http://localhost:30080/coffee"; done
+	for i in $$(seq 1 100); do curl -s -o /dev/null "http://localhost:30080/tea"; done
+
+.PHONY: productpage
+productpage:
+	for i in $$(seq 1 100); do curl -s -o /dev/null "http://localhost:30080/productpage"; done
