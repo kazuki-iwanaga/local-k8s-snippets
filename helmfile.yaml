@@ -35,3 +35,8 @@ releases:
       - default/gateway-api
   # Install Istio integrations
   # https://istio.io/latest/docs/ops/integrations/
+  - name: istio-integrations
+    chart: ./kustomize/istio-integrations
+    namespace: istio-system
+    needs:
+      - istio-system/istio-ingressgateway
