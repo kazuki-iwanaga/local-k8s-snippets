@@ -8,4 +8,4 @@ down:
 
 .PHONY: run
 run:
-	helmfile apply
+	helmfile apply --suppress-diff
