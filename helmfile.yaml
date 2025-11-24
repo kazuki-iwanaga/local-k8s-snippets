@@ -46,6 +46,11 @@ releases:
 
   - needs:
       - istio-system/istiod
+    name: istio-addons
+    chart: ./kustomize/istio-addons
+    namespace: istio-system
+
+  - needs:
+      - istio-system/istiod
     name: istio-sample-app
     chart: ./kustomize/istio-sample-app
-    wait: true
