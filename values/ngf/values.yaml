@@ -1,7 +1,0 @@
-# https://docs.nginx.com/nginx-gateway-fabric/get-started/#install-the-helm-chart
-nginx:
-  service:
-    type: NodePort
-    nodePorts:
-      - port: 30080
-        listenerPort: 80
