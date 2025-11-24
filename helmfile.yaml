@@ -6,52 +6,26 @@ repositories:
     url: https://istio-release.storage.googleapis.com/charts
 
 releases:
+  # Install Gateway API CRDs
+  # https://gateway-api.sigs.k8s.io/guides/#install-standard-channel
   - name: gateway-api
     chart: ./kustomize/gateway-api
-    namespace: ngf
 
-  - needs:
-      - ngf/gateway-api
-    name: istio-base
+  # Install Istio (sidecar mode)
+  # https://istio.io/latest/docs/setup/install/helm/
+  - name: istio-base
     chart: istio/base
     version: 1.28.0
     namespace: istio-system
-
-  - needs:
-      - istio-system/istio-base
-    name: istiod
+  - name: istiod
     chart: istio/istiod
     version: 1.28.0
     namespace: istio-system
     wait: true
 
-  - needs:
-      - istio-system/istiod
-    name: ngf
-    # https://docs.nginx.com/nginx-gateway-fabric/get-started/#install-the-helm-chart
-    chart: oci://ghcr.io/nginx/charts/nginx-gateway-fabric
-    version: 2.2.1
-    namespace: ngf
-    values:
-      - values/ngf/values.yaml
-    # Required when CRDs are included in the chart.
-    # https://helmfile.readthedocs.io/en/latest/#configuration
-    disableValidationOnInstall: true
-    wait: true
-
-  - needs:
-      - ngf/ngf
-    name: ngf-gateway
-    chart: ./kustomize/ngf-gateway
-    namespace: ngf-gateway
-
-  - needs:
-      - ngf-gateway/ngf-gateway
-    name: istio-addons
-    chart: ./kustomize/istio-addons
+  # Install Istio Ingress Gateway
+  # NOTE: Use kustomize to install istio-ingressgateway as NodePort and specify its port.
+  # https://istio.io/latest/docs/setup/additional-setup/gateway/
+  - name: istio-ingressgateway
+    chart: ./kustomize/istio-ingressgateway
     namespace: istio-system
-
-  - needs:
-      - istio-system/istiod
-    name: istio-sample-app
-    chart: ./kustomize/istio-sample-app
