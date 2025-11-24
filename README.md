@@ -13,6 +13,9 @@ make run
 # make down
 ```
 
+# Memo
+- https://istio.io/latest/docs/setup/additional-setup/getting-started-istio-apis/
+
 # Links
 - http://localhost:30080/coffee
 - http://localhost:30080/tea
