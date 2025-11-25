@@ -8,6 +8,7 @@ spec:
     - "*"
   gateways:
     - istio-gateway
+    # NOTE: This VirtualService configures only external access, so "mesh" gateway is not required here.
   http:
     - match:
         - uri:
