@@ -1,0 +1,28 @@
+# https://istio.io/latest/docs/reference/config/networking/gateway/
+apiVersion: networking.istio.io/v1
+kind: VirtualService
+metadata:
+  name: istio-integrations
+spec:
+  hosts:
+    - "*"
+  gateways:
+    - istio-gateway
+    # NOTE: This VirtualService configures only external access, so "mesh" gateway is not required here.
+  http:
+    - match:
+        - uri:
+            prefix: /kiali
+      route:
+        - destination:
+            host: kiali
+            port:
+              number: 20001
+    - match:
+        - uri:
+            prefix: /jaeger
+      route:
+        - destination:
+            host: tracing
+            port:
+              number: 80

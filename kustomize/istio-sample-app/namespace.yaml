@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: istio-sample-app
-  labels:
-    # https://istio.io/latest/docs/setup/getting-started/#install
-    istio-injection: enabled
