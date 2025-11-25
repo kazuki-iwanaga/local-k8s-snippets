@@ -40,3 +40,9 @@ releases:
     namespace: istio-system
     needs:
       - istio-system/istio-ingressgateway
+  # Install Istio Sample App (bookinfo)
+  - name: bookinfo
+    chart: ./kustomize/bookinfo
+    namespace: bookinfo
+    needs:
+      - istio-system/istio-ingressgateway

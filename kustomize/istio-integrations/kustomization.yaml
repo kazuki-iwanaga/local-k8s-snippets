@@ -11,6 +11,3 @@ resources:
   - https://raw.githubusercontent.com/istio/istio/release-1.28/samples/addons/prometheus.yaml
   # https://istio.io/latest/docs/ops/integrations/grafana/
   - https://raw.githubusercontent.com/istio/istio/release-1.28/samples/addons/grafana.yaml
-
-  # https://istio.io/latest/docs/setup/getting-started/#bookinfo
-  - https://raw.githubusercontent.com/istio/istio/release-1.28/samples/bookinfo/platform/kube/bookinfo.yaml

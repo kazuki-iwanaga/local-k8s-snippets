@@ -1,0 +1,29 @@
+# https://istio.io/latest/docs/reference/config/networking/gateway/
+apiVersion: networking.istio.io/v1
+kind: VirtualService
+metadata:
+  name: bookinfo
+spec:
+  hosts:
+    - "*"
+  gateways:
+    - istio-system/istio-gateway
+    # NOTE: This VirtualService configures only external access, so "mesh" gateway is not required here.
+  # https://raw.githubusercontent.com/istio/istio/release-1.28/samples/bookinfo/networking/bookinfo-gateway.yaml
+  http:
+    - match:
+        - uri:
+            exact: /productpage
+        - uri:
+            prefix: /static
+        - uri:
+            exact: /login
+        - uri:
+            exact: /logout
+        - uri:
+            prefix: /api/v1/products
+      route:
+        - destination:
+            host: productpage
+            port:
+              number: 9080
