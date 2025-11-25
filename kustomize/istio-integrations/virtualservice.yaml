@@ -18,3 +18,11 @@ spec:
             host: kiali
             port:
               number: 20001
+    - match:
+        - uri:
+            prefix: /jaeger
+      route:
+        - destination:
+            host: tracing
+            port:
+              number: 80
